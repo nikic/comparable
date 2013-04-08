@@ -20,43 +20,43 @@ will be normalized to them.
 
 An example (not sure how much sense it makes):
 
-    <?php
+```php
+<?php
 
-    class Point implements Comparable {
-        protected $x, $y, $z;
+class Point implements Comparable {
+    protected $x, $y, $z;
 
-        public function __construct($x, $y, $z) {
-            $this->x = $x; $this->y = $y; $this->z = $z;
-        }
-
-        public static function compare($p1, $p2) {
-            if ($p1->x == $p2->x && $p1->y == $p2->y && $p1->z == $p2->z) {
-                return 0;
-            }
-
-            if ($p1->x < $p2->x && $p1->y < $p2->y && $p1->z < $p2->z) {
-                return -1;
-            }
-
-            if ($p1->x > $p2->x && $p1->y > $p2->y && $p1->z > $p2->z) {
-                return 1;
-            }
-
-            return 1;
-        }
+    public function __construct($x, $y, $z) {
+        $this->x = $x; $this->y = $y; $this->z = $z;
     }
 
-    $p1 = new Point(1, 1, 1);
-    $p2 = new Point(2, 2, 2);
-    $p3 = new Point(1, 0, 2);
+    public static function compare($p1, $p2) {
+        if ($p1->x == $p2->x && $p1->y == $p2->y && $p1->z == $p2->z) {
+            return 0;
+        }
 
-    var_dump($p1 < $p2);
-    var_dump($p1 > $p2);
-    var_dump($p1 == $p2);
+        if ($p1->x < $p2->x && $p1->y < $p2->y && $p1->z < $p2->z) {
+            return -1;
+        }
 
-    var_dump($p1 == $p1);
+        if ($p1->x > $p2->x && $p1->y > $p2->y && $p1->z > $p2->z) {
+            return 1;
+        }
 
-    var_dump($p1 < $p3, $p1 > $p3, $p1 == $p3);
+        return 1;
+    }
+}
+
+$p1 = new Point(1, 1, 1);
+$p2 = new Point(2, 2, 2);
+$p3 = new Point(1, 0, 2);
+
+var_dump($p1 < $p2, $p1 > $p2, $p1 == $p2); // true, false, false
+
+var_dump($p1 == $p1); // true
+
+var_dump($p1 < $p3, $p1 > $p3, $p1 == $p3); // false, false, false
+```
 
 Installation
 ------------
