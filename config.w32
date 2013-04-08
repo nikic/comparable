@@ -1,0 +1,10 @@
+// $Id$
+// vim:ft=javascript
+
+Otherwise, use ARG_ENABLE
+ARG_ENABLE("comparable", "enable comparable support", "no");
+
+if (PHP_COMPARABLE != "no") {
+	EXTENSION("comparable", "comparable.c");
+}
+
