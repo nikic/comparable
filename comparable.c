@@ -65,11 +65,7 @@ static int comparable_compare_objects(zval *obj1, zval *obj2 TSRMLS_DC)
 	zval *retval = NULL;
 	int result;
 
-	if (instanceof_function(Z_OBJCE_P(obj1), Z_OBJCE_P(obj2) TSRMLS_CC)) {
-		zend_call_method_with_2_params(NULL, Z_OBJCE_P(obj1), NULL, "compare", &retval, obj1, obj2);
-	} else if (instanceof_function(Z_OBJCE_P(obj2), Z_OBJCE_P(obj1) TSRMLS_CC)) {
-		zend_call_method_with_2_params(NULL, Z_OBJCE_P(obj2), NULL, "compare", &retval, obj1, obj2);
-	}
+	zend_call_method_with_2_params(NULL, Z_OBJCE_P(obj1), NULL, "compare", &retval, obj1, obj2);
 	
 	if (!retval || Z_TYPE_P(retval) == IS_NULL) {
 		if (retval) {

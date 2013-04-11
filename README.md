@@ -10,8 +10,10 @@ This extension implements a magic `Comparable` interface for PHP:
         static function compare($obj1, $obj2);
     }
 
-When two objects in the same inheritance chain are compared using `<`, `>` or `==` the `compare()`
-method will be invoked (on the class that is further down the interitance chain).
+When two objects (both implementing the interface) are comapred using `<`, `>` or `==` the
+`compare()` method will be invoked. One should not rely on which class the method is invoked
+on. (Due to technical reasons for `$l < $r` it will be called on the class of `$l`, but for
+`$l > $r` it will be called on the class of `$r`.)
 
 The `compare()` method can either return `null` to fall back to the default comparison behavior
 or one of the integer values `-1` (for "smaller"), `0` (for "equal") and `1` (for "greater"). If
